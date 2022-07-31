@@ -2,45 +2,38 @@ snail = function (array) {
 	// enjoy
 
 	const n = array.length;
-	let array1 = array.slice(0);
 	let result = [];
-	for (let i = 0, move = 1; i < 2 * n - 1; i++) {
 
+	for (let i = 0, move = 1; i < 2 * n - 1; i++) {
 
 		switch (move) {
 
-			case 1:
-				// add the whole top array
-
-				result.concat(array1.shift())
+			case 1: // add the whole top array
+				result.concat(array.shift())
 				console.log(result)
 				move++
 				break;
 
-			case 2:
-				for (let j = 0; j < array1.length; j++) {
-					result.concat(array[j][array[j].length - 1].pop())
+			case 2: //add the right side of matrix
+				for (let j = 0; j < array.length; j++) {
+					result.concat(array[j].pop())
 				}
 				move++
 				break;
 
-			case 3:
-				for (let j = 0; j < array1.length; j++) {
-					result.concat(array[j][array[j].length - 1].shift())
-				}
+			case 3: //add the bottom row in reverse
+				result.concat(array.pop().reverse())
 				move++
 				break;
 
-			case 4:
-				// add the whole bottom array in reverse
-				result.concat(array.pop())
+			case 4: // add the left side
+				for (let j = 0; j < array.length; j++) {
+					result.concat(array[j].shift())
+				}
 				move = 1
 				break;
-
 		}
-
 	}
-
 }
 
 
@@ -74,7 +67,7 @@ In a 4 move cycle remove the elements from the array and add them to the result 
 
   Move 1: Right Upshift Top row
   Move 2: Down Pop Right side 
-  Move 3: Left Pop Left side 
-  Move 4: Up Upshift Bottom Row
+  Move 3: Up Upshift Bottom Row and reverse
+  Move 4: Left shift Left side  and reverse
 
 */
